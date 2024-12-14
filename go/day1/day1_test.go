@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-type Pair struct {
+type Results struct {
 	distance   int
 	similarity int
 }
@@ -14,7 +14,7 @@ func TestSolve(t *testing.T) {
 	tests := []struct {
 		name     string
 		input    string
-		expected Pair
+		expected Results
 	}{
 		{
 			name: "Simple case",
@@ -24,13 +24,13 @@ func TestSolve(t *testing.T) {
 1   3
 3   9
 3   3`,
-			expected: Pair{11, 31},
+			expected: Results{11, 31},
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			distance, similarity := Solve(tt.input)
+			distance, similarity := solve(tt.input)
 			if distance != tt.expected.distance {
 				t.Errorf("Expected %d, got %d", tt.expected, distance)
 			}

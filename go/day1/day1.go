@@ -2,23 +2,14 @@ package day1
 
 import (
 	"fmt"
+	"github.com/Rodrigodd/advent-of-code-2024/util"
 	"os"
 	"sort"
 	"strconv"
 	"strings"
 )
 
-// One reason for hating Go
-func AbsInt(x int) int {
-	if x < 0 {
-		return -x
-	}
-	return x
-}
-
-// Solve processes the input and returns the solution.
-// Example logic: computes the sum of integers from the input.
-func Solve(input string) (int, int) {
+func solve(input string) (int, int) {
 	var lefts, rights []int
 	for _, line := range strings.Split(strings.TrimSpace(input), "\n") {
 		splitted := strings.SplitN(line, " ", 2)
@@ -45,7 +36,7 @@ func Solve(input string) (int, int) {
 
 	for idx, l := range lefts {
 		r := rights[idx]
-		dist := AbsInt(l - r)
+		dist := util.AbsInt(l - r)
 		distance += dist
 	}
 
@@ -75,5 +66,5 @@ func Day1() {
 		panic(fmt.Sprintf("Failed to open input file: %v", err))
 	}
 
-	Solve(string(input))
+	solve(string(input))
 }
